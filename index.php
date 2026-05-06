@@ -27,7 +27,7 @@ session_destroy();
             </div>
         <?php endfor; ?>
         
-        <button type="submit" name="igraj" class="btn">Vrzi kocke za vse!</button>
+        <input type="submit" name="igraj" class="btn" value="Vstopi"></input>
     </form>
 </div>
 

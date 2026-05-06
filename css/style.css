@@ -1,47 +1,184 @@
-/* css/style.css */
-body { font-family: 'Segoe UI', sans-serif; background: #f4f4f9; padding: 20px; color: #333; }
-.container { max-width: 800px; margin: auto; background: white; padding: 30px; border-radius: 10px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); }
-h1, h2, h3 { text-align: center; }
+:root {
+    --bg-color: #ffffff;
+    --primary-blue: #007bff;
+    --primary-hover: #0056b3;
+    --success-green: #28a745;
+    --gray-btn: #6c757d;
+    --gold: linear-gradient(135deg, #ffd700, #daa520);
+    --silver: linear-gradient(135deg, #e6e6e6, #a6a6a6);
+    --bronze: linear-gradient(135deg, #cd7f32, #8b4513);
+}
 
-/* Obrazec */
-.igralec-form { border: 1px solid #ccc; padding: 15px; margin-bottom: 15px; border-radius: 5px; background: #fafafa; }
-input[type="text"] { width: 100%; padding: 8px; margin: 5px 0 15px; box-sizing: border-box; border: 1px solid #ccc; border-radius: 4px; }
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
 
-/* Rezultati */
-.igralec-rezultat { border-bottom: 2px dashed #ddd; padding-bottom: 20px; margin-bottom: 20px; text-align: center; }
-.kocka-img { width: 60px; height: 60px; margin: 5px; vertical-align: middle; }
+body {
+    font-family: 'Segoe UI', sans-serif;
+    background: #f4f4f9;
+    padding: 20px;
+    color: #333;
+}
+
+.container {
+    max-width: 800px;
+    margin: auto;
+    background: var(--bg-color);
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+h1, h2, h3 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+/* Obrazec (index.php) */
+.igralec-form {
+    border: 1px solid #ccc;
+    padding: 15px;
+    margin-bottom: 15px;
+    border-radius: 5px;
+    background: #fafafa;
+}
+
+input[type="text"] {
+    width: 100%;
+    padding: 10px;
+    margin: 5px 0 15px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+/* Rezultati (rezultati.php) */
+.igralec-rezultat {
+    border-bottom: 2px dashed #ddd;
+    padding-bottom: 20px;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.dice-area {
+    visibility: hidden; /* Skrito dokler igralec ne klikne Roll */
+    margin-bottom: 10px;
+}
+
+.kocka-img {
+    width: 60px;
+    height: 60px;
+    margin: 5px;
+    vertical-align: middle;
+}
+
+#timer-obvestilo {
+    display: none; /* Prikaže se šele ko vsi vržejo */
+    background: #fff3cd;
+    padding: 15px;
+    border: 1px solid #ffeeba;
+    border-radius: 5px;
+    text-align: center;
+    margin-top: 20px;
+}
 
 /* Gumbi */
-.btn { display: block; width: 100%; padding: 15px; background: #007bff; color: white; border: none; font-size: 1.2rem; cursor: pointer; border-radius: 5px; text-align: center; text-decoration: none; box-sizing: border-box; margin-top: 20px; }
-.btn:hover { background: #0056b3; }
-.btn-nazaj { background: #6c757d; }
+.btn {
+    display: block;
+    width: 100%;
+    padding: 15px;
+    background: var(--primary-blue);
+    color: white;
+    border: none;
+    font-size: 1.2rem;
+    cursor: pointer;
+    border-radius: 5px;
+    text-align: center;
+    text-decoration: none;
+    margin-top: 20px;
+    transition: background 0.3s;
+}
+
+.btn:hover { background: var(--primary-hover); }
+
+.btn-nazaj { background: var(--gray-btn); }
 .btn-nazaj:hover { background: #5a6268; }
 
-/* Stopničke za zmagovalce */
-.stopnicke-container { display: flex; justify-content: center; align-items: flex-end; height: 250px; margin-top: 30px; gap: 10px; }
-.mesto { display: flex; flex-direction: column; align-items: center; justify-content: flex-end; border-radius: 10px 10px 0 0; color: white; font-weight: bold; width: 150px; text-align: center; padding: 10px; box-shadow: 0 -4px 10px rgba(0,0,0,0.2); }
-.mesto-1 { height: 200px; background: linear-gradient(135deg, #ffd700, #daa520); z-index: 3; } /* Zlata */
-.mesto-ime { margin-bottom: 15px; font-size: 1.2rem; text-shadow: 1px 1px 2px rgba(0,0,0,0.5); }
-.mesto-tocke { font-size: 2rem; margin-bottom: 10px; }
-
-/* Dodaj tole v style.css (lahko pod .mesto-1) */
-.mesto-2 { 
-    height: 160px; 
-    background: linear-gradient(135deg, #e6e6e6, #a6a6a6); 
-    z-index: 2; 
-    color: #333; /* Temnejša pisava za boljši kontrast na srebrni */
-}
-.mesto-2 .mesto-ime {
-    text-shadow: 1px 1px 2px rgba(255,255,255,0.8); /* Svetla senca za srebrno podlago */
+.roll-btn {
+    background-color: var(--success-green);
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 10px;
+    transition: transform 0.1s;
 }
 
-/* 3. Mesto - Bronasta (Dodaj pod .mesto-2) */
-.mesto-3 { 
-    height: 120px; 
-    background: linear-gradient(135deg, #cd7f32, #8b4513); 
-    z-index: 1; 
-    color: white; 
+.roll-btn:active { transform: scale(0.95); }
+.roll-btn:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
 }
-.mesto-3 .mesto-ime {
-    text-shadow: 1px 1px 2px rgba(0,0,0,0.5); 
+
+/* Stopničke (zmagovalci.php) */
+.stopnicke-container {
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    gap: 15px;
+    margin-top: 50px;
+    height: 300px; /* Dovolj prostora za najvišjo stopničko */
 }
+
+.mesto {
+    width: 160px;
+    padding: 15px;
+    text-align: center;
+    border-radius: 10px 10px 0 0;
+    font-weight: bold;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    box-shadow: 0 -4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.mesto-ime {
+    font-size: 1.1rem;
+    margin-bottom: 10px;
+    color: #333;
+    min-height: 40px;
+    text-shadow: 1px 1px 1px rgba(255,255,255,0.5);
+}
+
+.mesto-tocke {
+    font-size: 2rem;
+    display: block;
+    margin-bottom: 5px;
+}
+
+/* Specifične stopničke */
+.mesto-1 {
+    height: 250px;
+    background: var(--gold);
+    order: 2; /* Sredina */
+    border: 2px solid #b8860b;
+}
+
+.mesto-2 {
+    height: 190px;
+    background: var(--silver);
+    order: 1; /* Levo */
+    border: 2px solid #a6a6a6;
+}
+
+.mesto-3 {
+    height: 140px;
+    background: var(--bronze);
+    order: 3; /* Desno */
+    border: 2px solid #8b4513;
+    color: white;
+}
+
+.mesto-3 .mesto-ime { color: white; text-shadow: 1px 1px 2px rgba(0,0,0,0.5); }
