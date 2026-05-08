@@ -1,7 +1,5 @@
 <?php
-// play.php
 session_start();
-
 if (!isset($_POST['igraj']) && !isset($_SESSION['igralci'])) {
     header("Location: index.php");
     exit;
@@ -32,17 +30,17 @@ if (isset($_POST['igraj'])) {
 <html lang="sl">
 <head>
     <meta charset="UTF-8">
-    <title>Igra: Metanje kock</title>
-    <link rel="stylesheet" href="css/style.css">
-    <script src="js/javascript.js"></script>
+    <title>Las Vegas Dice - Igraj!</title>
+    <link rel="stylesheet" href="css/style.css?v=<?php echo time(); ?>">
+    <script src="js/javascript.js" defer></script>
 </head>
-<body>
+<body class="casino-body">
 
-<div class="container">
-    <h1>Rezultati igre</h1>
+<div class="container casino-table">
+    <h1 class="vegas-title">Mize so pripravljene!</h1>
     
     <?php foreach ($_SESSION['igralci'] as $index => $igralec): ?>
-        <div class='igralec-rezultat' id="player-<?php echo $index; ?>">
+        <div class='igralec-rezultat player-card' id="player-<?php echo $index; ?>">
             <h2><?php echo $igralec['ime'] . " " . $igralec['priimek']; ?></h2>
             
             <div class="dice-area" id="dice-area-<?php echo $index; ?>">
@@ -54,22 +52,18 @@ if (isset($_POST['igraj'])) {
                              alt='Kocka'>
                     <?php endforeach; ?>
                 </p>
-                <p class="skupna-vsota" style="display: none;">
-                    <strong>Skupna vsota:</strong> <?php echo $igralec['vsota']; ?>
+                <p class="skupna-vsota score-badge" style="display: none;">
+                    Vsota: <?php echo $igralec['vsota']; ?>
                 </p>
             </div>
 
-            <button class="roll-btn" onclick="vrziKocke(<?php echo $index; ?>)">Vrzi kocke!</button>
+            <button class="roll-btn chip-btn" onclick="vrziKocke(<?php echo $index; ?>)">Vrzi kocke!</button>
         </div>
     <?php endforeach; ?>
 
-    <hr>
-
-    <div id="timer-obvestilo" style="display: none;">
-        <p style="text-align: center; font-weight: bold; color: #dc3545; font-size: 1.2rem;">
-            Vsi so vrgli! Razglasitev zmagovalcev čez <span id="sekunde">10</span> sekund...
-        </p>
-        <a href="zmagovalci.php" class="btn">Preskoči in pokaži stopničke!</a>
+    <div id="timer-obvestilo" class="alert-vegas">
+        <p>Vsi so vrgli! Rezultati čez <span id="sekunde">10</span> sekund...</p>
+        <a href="zmagovalci.php" class="btn">Takoj na stopničke!</a>
     </div>
 </div>
 

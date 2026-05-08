@@ -1,33 +1,27 @@
-<?php
-// index.php
-session_start();
-session_unset(); 
-session_destroy();
-?>
+<?php session_start(); ?>
 <!DOCTYPE html>
 <html lang="sl">
 <head>
     <meta charset="UTF-8">
-    <title>1. Stran: Vnos igralcev</title>
-    <link rel="stylesheet" href="css/style.css">
+    <title>Las Vegas Dice - Vstop</title>
+    <link rel="stylesheet" href="css/style.css?v=<?php echo time(); ?>">
 </head>
-<body>
+<body class="casino-body">
 
-<div class="container">
-    <h1>Vnos Igralcev</h1>
-    <form method="POST" action="play.php">
+<div class="container casino-table">
+    <h1 class="vegas-title">🎰 Lucky Dice Casino 🎰</h1>
+    <p style="text-align:center; color: #ffd700;">Vnesi igralce:</p>
+    
+    <form action="play.php" method="POST">
         <?php for ($i = 1; $i <= 3; $i++): ?>
-            <div class="igralec-form">
+            <div class="igralec-form card-dark">
                 <h3>Igralec <?php echo $i; ?></h3>
-                <label>Ime:</label>
-                <input type="text" name="ime<?php echo $i; ?>" required>
-                
-                <label>Priimek:</label>
-                <input type="text" name="priimek<?php echo $i; ?>" required>
+                <input type="text" name="ime<?php echo $i; ?>" placeholder="Ime" required>
+                <input type="text" name="priimek<?php echo $i; ?>" placeholder="Priimek" required>
             </div>
         <?php endfor; ?>
-        
-        <input type="submit" name="igraj" class="btn" value="Vstopi"></input>
+
+        <button type="submit" name="igraj" class="btn btn-gold">Začni igro!</button>
     </form>
 </div>
 
