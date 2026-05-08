@@ -27,6 +27,7 @@ body.casino-body{
     border-radius:24px;
     padding:40px;
     box-shadow:0 10px 40px rgba(0,0,0,.5);
+    text-align:center;
 }
 
 /* TITLE */
@@ -47,6 +48,7 @@ body.casino-body{
     border-radius:16px;
     padding:20px;
     margin-bottom:20px;
+    text-align:center;
 }
 
 /* INPUTI */
@@ -86,7 +88,7 @@ a.btn{
     font-size:16px;
     cursor:pointer;
     transition:.2s;
-    margin-top:15px;
+    margin:15px auto 0;
 }
 
 .btn:hover,

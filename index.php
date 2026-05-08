@@ -10,7 +10,7 @@
 
 <div class="container casino-table">
     <h1 class="vegas-title">🎰 Lucky Dice Casino 🎰</h1>
-    <p style="text-align:center; color: #ffd700;">Vnesi igralce:</p>
+    <h2 style="text-align:center; color: #ffd700;">Vnesi igralce:</h2>
     
     <form action="play.php" method="POST">
         <?php for ($i = 1; $i <= 3; $i++): ?>
